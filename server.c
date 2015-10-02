@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 	
 	server.sin_family = AF_INET;
 	server.sin_addr.s_addr = INADDR_ANY;
-	server.sin_port =ntohs(1027);
+	server.sin_port =htons(1027);
 	
 	/*call bind*/
 	if(bind(sock, (struct sockaddr *)&server, sizeof(server)))
