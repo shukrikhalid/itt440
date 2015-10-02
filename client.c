@@ -6,7 +6,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-
 #define DATA "Hello World of socket"
 
 int main (int argc, char *argv[])
@@ -33,23 +32,23 @@ int main (int argc, char *argv[])
 	}
 	
 	memcpy(&server.sin_addr, hp->h_addr, hp->h_length);
-	server.sin_port = htons(1027);
+	server.sin_port = htons(1026);
 	
-	if(connect(sock, (struct sockaddr *) &server,sizeof (server))< 0)
+	if(connect(sock, (struct sockaddr *) &server, sizeof (server))< 0)
 	{
 		perror("connect failed");
 		close(sock);
 		exit(1);
 	}
 	
-	if(send(sock, DATA, sizeof(DATA),0) <0)
+	if(send(sock, DATA, sizeof(DATA), 0) < 0)
 	{
 		perror("sent failed");
 		close(sock);
 		exit(1);
 	}
 	
-	printf("Sent &s\n", DATA);
+	printf("Sent %s\n", DATA);
 	close(sock);
 	
 	return 0;
