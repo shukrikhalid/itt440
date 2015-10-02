@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
 	
 	server.sin_family = AF_INET;
 	server.sin_addr.s_addr = INADDR_ANY;
-	server.sin_port = 5000;
+	server.sin_port =ntohs(1027);
 	
 	/*call bind*/
 	if(bind(sock, (struct sockaddr *)&server, sizeof(server)))
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 			else
 				printf("MSG: %s/n",buff);
 			printf("Got the message (rval = %d)\n",rval);
-			close(mysock);
+
 		}
 	} while (1);
 	return 0;
