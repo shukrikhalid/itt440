@@ -9,7 +9,7 @@
 
 #define DATA "Hello World of socket"
 
-int main (int argc char *argv[])
+int main (int argc, char *argv[])
 {
 	int sock;
 	struct sockaddr_in server;
@@ -24,7 +24,7 @@ int main (int argc char *argv[])
 	}
 	
 	server.sin_family = AF_INET;
-	hp = gethostbyname(argv[]);
+	hp = gethostbyname(argv[1]);
 	if(hp == 0)
 	{
 		perror("gethostbyname failed");
@@ -32,12 +32,12 @@ int main (int argc char *argv[])
 		exit(1);
 	}
 	
-	memcpy(&serve.sin_addr, hp->h-addr, hp->h_length);
+	memcpy(&server.sin_addr, hp->h_addr, hp->h_length);
 	server.sin_port = htons(1027);
 	
 	if(connect(sock, (struct sockaddr *) &server,sizeof (server))< 0)
 	{
-		perrop("connect failed");
+		perror("connect failed");
 		close(sock);
 		exit(1);
 	}
@@ -46,7 +46,7 @@ int main (int argc char *argv[])
 	{
 		perror("sent failed");
 		close(sock);
-		exit(1)
+		exit(1);
 	}
 	
 	printf("Sent &s\n", DATA);
